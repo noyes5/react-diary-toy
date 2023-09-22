@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { DiaryStateContext } from "../App";
 
-import MyHeader from './../components/MyHeader';
-import MyButton from './../components/MyButton';
-import DiaryList from './../components/DiaryList';
+import MyHeader from "./../components/MyHeader";
+import MyButton from "./../components/MyButton";
+import DiaryList from "./../components/DiaryList";
 
 const Home = () => {
   const diaryList = useContext(DiaryStateContext);
@@ -23,17 +23,21 @@ const Home = () => {
       const lastDay = new Date(
         curDate.getFullYear(),
         curDate.getMonth() + 1,
-        0
+        0,
+        23,
+        59,
+        59
       ).getTime();
 
-      setData(diaryList.filter((it) => firstDay <= it.date && it.date <= lastDay));
+      setData(
+        diaryList.filter((it) => firstDay <= it.date && it.date <= lastDay)
+      );
     }
   }, [diaryList, curDate]);
 
   useEffect(() => {
     console.log(data);
   }, [data]);
-
 
   const increaseMonth = () => {
     setCurDate(
